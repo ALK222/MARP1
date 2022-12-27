@@ -23,4 +23,16 @@ Todas las pruebas incluyen los tiempos de carga desde archivo de los grafos y la
     \item\textbf{SO:} ArcoLinux
 \end{itemize}
 
-Los gráficos de las pruebas se pueden ver en las figuras: .
+
+
+Los gráficos de las pruebas se pueden ver en la figura \ref{fig:prim-plot}~(\nameref{fig:prim-plot})
+
+\begin{figure}[H]
+      \includegraphics[width = \textwidth]{./images/prim-plot.png}
+      \caption{Gráfica de tiempo del algoritmo de Prim para distintas cargas de trabajo.}
+      \label{fig:prim-plot}
+  \end{figure}
+
+
+Los tiempos observados se pueden asimilar a las de una función $nlog(n)$, que es lo que se pedría en el enunciado.
+A mayor numero de aristas en el grafo, mayor será el coste, pero en el algoritmo implementado si no hay unión (representado por el valor más alto de un int de 32 bits), no se hace ninguna operación y se pasa al siguiente nodo.

@@ -1,6 +1,9 @@
 CC = g++
 CFLAGS = -g -Wall
 
+LIB = graph
+OUT = Prim-algo
+
 EXT :=
 ifeq ($(OS), Windows_NT)
 	EXT = .exe
@@ -12,19 +15,19 @@ OBJDIR = ./obj
 BINDIR = ./bin
 
 .PHONY: all
-all: ./obj/graph.o ./bin/Prim-algo$(EXT)
+all: ./obj/$(LIB).o ./bin/$(OUT)$(EXT)
 
-./bin/Prim-algo$(EXT): ./obj/graph.o main.cpp
-	$(CC) $(CFLAGS) main.cpp $(OBJDIR)/graph.o -o $(BINDIR)/Prim-algo$(EXT)
+./bin/$(OUT)$(EXT): ./obj/$(LIB).o main.cpp
+	$(CC) $(CFLAGS) main.cpp $(OBJDIR)/$(LIB).o -o $(BINDIR)/$(OUT)$(EXT)
 
 .PHONY: prueba
-prueba: ./obj/graph.o ./bin/Prim-algo-prueba$(EXT)
+prueba: ./obj/$(LIB).o ./bin/$(OUT)-prueba$(EXT)
 
-./bin/Prim-algo-prueba$(EXT): ./obj/graph.o main.cpp
-	$(CC) $(CFLAGS) main.cpp $(OBJDIR)/graph.o -o $(BINDIR)/Prim-algo-prueba$(EXT) -D __PRUEBA__
+./bin/$(OUT)-prueba$(EXT): ./obj/$(LIB).o main.cpp
+	$(CC) $(CFLAGS) main.cpp $(OBJDIR)/$(LIB).o -o $(BINDIR)/$(OUT)-prueba$(EXT) -D __PRUEBA__
 
-./obj/graph.o: ./graph/graph.cpp
-	$(CC) $(CFLAGS) -c ./graph/graph.cpp -o $(OBJDIR)/graph.o
+./obj/$(LIB).o: ./$(LIB)/$(LIB).cpp
+	$(CC) $(CFLAGS) -c ./$(LIB)/$(LIB).cpp -o $(OBJDIR)/$(LIB).o
 
 .PHONY: clean
 clean:

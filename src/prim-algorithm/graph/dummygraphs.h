@@ -42,12 +42,8 @@ dummygraphs dgGenerator(std::string archivo)
     {
         for (int j = 0; j < aux.num; ++j)
         {
-            std::string aux;
+            int aux;
             std::cin >> aux;
-            while (aux == "[" | aux == "]", || aux == ",")
-            {
-                std::cin >> aux;
-            }
             adjAux[i].push_back(aux);
         }
     }
