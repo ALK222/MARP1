@@ -1,32 +1,33 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <iostream>
 
 /// @brief Dummy structure for testing purposes
-struct dummygraphs
+struct dummygraph
 {
     /// @brief number of nodes
     int num;
     /// @brief adjacency list
-    std::vector<std::vector<int>> adj;
+    std::vector<std::vector<std::pair<int, int>>> adj;
 };
 
 #ifdef __PRUEBA__
 /// @brief graph generator depending of the compiling flag
 /// @param archivo Archivo con los datos del grafo
 /// @return a dummygraph struct with all graph
-dummygraphs dgGenerator(std::string archivo);
+dummygraph dgGenerator(std::string archivo);
 #else
 /// @brief graph generator depending of the compiling flag
 /// @return a dummygraph struct with all graph
-dummygraphs dgGenerator();
+dummygraph dgGenerator();
 #endif
 
 #ifdef __PRUEBA__
 
-dummygraphs dgGenerator(std::string archivo)
+dummygraph dgGenerator(std::string archivo)
 {
-    dummygraphs aux;
+    dummygraph aux;
 
     std::ifstream in(archivo);
     if (!in)
@@ -37,14 +38,17 @@ dummygraphs dgGenerator(std::string archivo)
 
     std::cin >> aux.num;
 
-    std::vector<std::vector<int>> adjAux(aux.num, std::vector<int>(aux.num, 0));
+    std::vector<std::vector<std::pair<int, int>>> adjAux(aux.num);
     for (int i = 0; i < aux.num; ++i)
     {
-        for (int j = 0; j < aux.num; ++j)
+        int numConnections = 0;
+        std::cin >> numConnections;
+        for (int j = 0; j < numConnections; ++j)
         {
-            int aux;
-            std::cin >> aux;
-            adjAux[i].push_back(aux);
+            int auxNode;
+            int auxWeight;
+            std::cin >> auxNode >> auxWeight;
+            adjAux[i].push_back(std::make_pair(auxNode, auxWeight));
         }
     }
 
@@ -55,18 +59,18 @@ dummygraphs dgGenerator(std::string archivo)
     return aux;
 }
 #else // __PRUEBA__
-dummygraphs dgGenerator()
+dummygraph dgGenerator()
 {
-    dummygraphs aux;
+    dummygraph aux;
     aux.num = 7;
     aux.adj = {
-        {0, 28, __INT32_MAX__, __INT32_MAX__, __INT32_MAX__, 10, __INT32_MAX__},
-        {28, 0, 16, __INT32_MAX__, __INT32_MAX__, __INT32_MAX__, 14},
-        {__INT32_MAX__, 16, 0, 12, __INT32_MAX__, __INT32_MAX__, __INT32_MAX__},
-        {__INT32_MAX__, __INT32_MAX__, 12, 0, 22, __INT32_MAX__, 28},
-        {__INT32_MAX__, __INT32_MAX__, __INT32_MAX__, 22, 0, 25, 24},
-        {10, __INT32_MAX__, __INT32_MAX__, __INT32_MAX__, 25, 0, __INT32_MAX__},
-        {__INT32_MAX__, 14, __INT32_MAX__, 18, 24, __INT32_MAX__, 0}};
+        {std::make_pair(1, 28), std::make_pair(5, 10)},                         // 0
+        {std::make_pair(0, 28), std::make_pair(2, 16), std::make_pair(6, 14)},  // 1
+        {std::make_pair(1, 16), std::make_pair(3, 12)},                         // 2
+        {std::make_pair(2, 12), std::make_pair(4, 22), std::make_pair(6, 18)},  // 3
+        {std::make_pair(3, 22), std::make_pair(5, 25), std::make_pair(6, 24)},  // 4
+        {std::make_pair(0, 10), std::make_pair(4, 25)},                         // 5
+        {std::make_pair(2, 14), std::make_pair(3, 18), std::make_pair(4, 24)}}; // 6
 
     return aux;
 }

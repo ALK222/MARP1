@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
         std::cerr << "Error generating heap: " << e.what() << '\n';
         return -1;
     }
+
 #endif
 
     Williams_heap wh(d.l);
@@ -31,10 +32,14 @@ int main(int argc, char *argv[])
         wh.insert(d.a[i]);
     }
 
+#ifdef __DISPLAY__
+    wh.printVector();
+#endif // __DISPLAY__
+
     wh.decreaseKey(d.keyToDecrease, d.cuantityToDecrease);
 
-#ifndef __PRUEBA__
+#ifdef __DISPLAY__
     wh.printVector();
-#endif // __PRUEBA__
+#endif // __DISPLAY__
     return 0;
 }

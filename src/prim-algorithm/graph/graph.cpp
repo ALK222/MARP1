@@ -7,16 +7,10 @@ Graph::Graph()
 Graph::Graph(int nodes)
 {
     _nodeCount = nodes;
-    _adjacency = std::vector<std::vector<int>>(_nodeCount);
-
-    // Graph with 0 distance between the nodes
-    for (int i = 0; i < _nodeCount; i++)
-    {
-        _adjacency[i] = std::vector<int>(_nodeCount, 0);
-    }
+    _adjacency = std::vector<std::vector<std::pair<int, int>>>(_nodeCount);
 }
 
-Graph::Graph(int nodes, std::vector<std::vector<int>> adj)
+Graph::Graph(int nodes, std::vector<std::vector<std::pair<int, int>>> adj)
 {
     _nodeCount = nodes;
     _adjacency = adj;
@@ -61,21 +55,21 @@ std::vector<int> Graph::prim()
         // Node already visited
         visited[u] = true;
 
-        for (int i = 0; i < _nodeCount; ++i)
+        for (std::pair<int, int> i : _adjacency[u])
         {
-            if (u == i)
+            if (u == i.first)
             {
                 continue;
             }
             // get weight between current node and the adjacent ones
-            int weight = _adjacency[u][i];
+            int weight = i.second;
 
-            if (visited[i] == false && key[i] > weight)
+            if (visited[i.first] == false && key[i.first] > weight)
             {
                 // if node is not visited and the weight storaged is greater, update values
-                key[i] = weight;
-                pq.push(std::pair<int, int>(key[i], i));
-                mst[i] = u;
+                key[i.first] = weight;
+                pq.push(std::pair<int, int>(key[i.first], i.first));
+                mst[i.first] = u;
             }
         }
     }

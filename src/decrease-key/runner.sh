@@ -2,63 +2,49 @@
 
 make clean prueba
 
-echo "Unzipping test cases"
-cd williams-heap/test/test_cases
+EXE=Williams-decrease-prueba.out
+LIB=williams-heap
 
-unzip -qq heaps.zip
-rm heaps.zip
-cd ../../..
+(
+    echo "Unzipping test cases"
+    cd ./${LIB}/test/test_cases
+    
+    unzip -qq ${LIB}s.zip
+    rm ${LIB}s.zip
+)
+
 
 rm -rf ./results/result_files/*.txt
 
 echo "Running cases"
 
-for test in {10..90..10};
+for test in $(seq 10 10 90; seq 100 100 900; seq 1000 1000 100000);
 do
-    for c in {1..5}
+    for c in $(seq 1 5);
     do
         echo "Case ${test}-${c}"
-        for times in {0..1000};
-        do 
+        for _ in $(seq 1 1000);
+        do
             { time ./bin/Williams-decrease-prueba.out ./williams-heap/test/test_cases/heap_${test}_${c}.txt ; } &>> ./results/result_files/${test}_${c}.txt
-        done 
+        done
     done
 done
 
-for test in {100..1000..100};
-do
-    for c in {1..5}
-    do
-        echo "Case ${test}-${c}"
-        for times in {0..1000};
-        do 
-            { time ./bin/Williams-decrease-prueba.out ./williams-heap/test/test_cases/heap_${test}_${c}.txt ; } &>> ./results/result_files/${test}_${c}.txt
-        done 
-    done
-done
+(
+    echo "Zipping test cases"
+    
+    cd ./${LIB}/test/test_cases
+    
+    zip -m -qq ${LIB}s.zip ./*.txt
+)
 
-for test in {1000..9000..1000};
-do
-    for c in {1..5}
-    do
-        echo "Case ${test}-${c}"
-        for times in {0..50};
-        do 
-            { time ./bin/Williams-decrease-prueba.out ./williams-heap/test/test_cases/heap_${test}_${c}.txt ; } &>> ./results/result_files/${test}_${c}.txt
-        done 
-    done
-done
-
-echo "Zipping test cases"
-
-zip -m -qq ./williams-heap/test/test_cases/heaps.zip ./williams-heap/test/test_cases/*.txt
-
-echo "Analyzing results"
-
-cd results
-
-python ./resultsParser.py
-
-zip -m -qq ./result-files/results.zip result_files/*.txt
-
-cd ..
+(
+    
+    echo "Analyzing results/result_files"
+    
+    cd ./results/result_files
+    
+    python ResultParser.py
+    
+    zip -m -qq results.zip ./*.txt
+)

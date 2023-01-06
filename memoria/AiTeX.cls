@@ -17,17 +17,18 @@
 % Identification
 %----------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{AiTeX}[30/12/2020 Template for notes of lessons for the FDI UCM]
+\ProvidesClass{AiTeX-Report}[30/12/2020 Template for reports of lessons for the FDI UCM]
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}} % Pass through any options to the base class
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}} % Pass through any options to the base class
 \ProcessOptions\relax % Process the given option
 
-\LoadClass{book} % Loads the base class
+\LoadClass{article} % Loads the base class
 
 %----------------------------------------------------------
 % Packages and configurations
 %----------------------------------------------------------
 
+\usepackage{gnuplottex}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{titlesec}
@@ -43,14 +44,8 @@
     linktoc=all
 }
 \usepackage{nameref}
-\usepackage[xindy, nomain, acronym, acronyms, nonumberlist, nopostdot, toc, section=chapter,nogroupskip]{glossaries}
-\usepackage{glossary-mcols}
-\usepackage[automake]{glossaries-extra}
 \usepackage{setspace}
 \usepackage[toc,page]{appendix} 
-\setabbreviationstyle[acronym]{short-long}
-\makeglossaries
-\include{glossary}
 \usepackage[a4paper, margin=0.8in, headheight=14pt]{geometry}
 \usepackage{graphicx}
 \usepackage{listings}
@@ -70,14 +65,14 @@
 \usepackage{chngcntr} % counterwithin
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
-\AtBeginDocument{\counterwithin{lstlisting}{chapter}}
+% \AtBeginDocument{\counterwithin{lstlisting}{chapter}}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LE,RO]{\lesson}
-\fancyhead[RE,LO]{\grade}
-\fancyfoot[LE,RO]{\thepage}
-\fancyfoot[RE,LO]{\leftmark}
+\fancyhead[L]{\lesson}
+\fancyhead[R]{\grade}
+\fancyfoot[L]{\thepage}
+\fancyfoot[R]{\autor}
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{1pt}
 \fancypagestyle{plain}{
@@ -110,7 +105,7 @@
 
 \newcommand*{\abstractA}[0]{
 \newpage
-\chapter*{Sobre \AiTeX }
+% \chapter*{Sobre \AiTeX }
 \noindent
 \AiTeX
 es una plantilla de \LaTeX\phantom{} creada por Alejandro Barrachina Argudo.\\\\
@@ -191,33 +186,33 @@ Esta plantilla se crea para facilitar el proceso de elaborar apuntes\\\\
 \end{titlepage}
 }
 
-\newcommand*{\biblio}[1]{ % Bibliografia
-\newpage
-\addcontentsline{toc}{chapter}{\protect\numberline{#1}Bibliografía y enlaces de referencia}%0
-\nocite{*}
-\bibliographystyle{ieeetr}
-\bibliography{biblio.bib}
-}
+% \newcommand*{\biblio}[1]{ % Bibliografia
+% \newpage
+% \addcontentsline{toc}{chapter}{\protect\numberline{#1}Bibliografía y enlaces de referencia}%0
+% \nocite{*}
+% \bibliographystyle{ieeetr}
+% \bibliography{biblio.bib}
+% }
 
 % CHAPTER FORMAT
 
 
-\newcommand{\hsp}{\hspace{20pt}}
-\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
-\titlespacing*{\chapter}{0pt}{-30pt}{0pt}
+% \newcommand{\hsp}{\hspace{20pt}}
+% \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+% \titlespacing*{\chapter}{0pt}{-30pt}{0pt}
 
-\newcommand{\chapterA}[1]{
-    \chapter{#1}
-    \vspace{-0.5ex}%
-    \noindent \rule{\textwidth}{0.3pt}
-}
+% \newcommand{\chapterA}[1]{
+%     \chapter{#1}
+%     \vspace{-0.5ex}%
+%     \noindent \rule{\textwidth}{0.3pt}
+% }
 
-\newcommand{\chapterANonNumber}[1]{
-    \chapter*{#1}
-    \vspace{-0.5ex}%
-    \noindent \rule{\textwidth}{0.3pt}
-    \addcontentsline{toc}{chapter}{#1}
-}
+% \newcommand{\chapterANonNumber}[1]{
+%     \chapter*{#1}
+%     \vspace{-0.5ex}%
+%     \noindent \rule{\textwidth}{0.3pt}
+%     \addcontentsline{toc}{chapter}{#1}
+% }
 
 \makeatletter
      \renewcommand*\l@figure{\@dottedtocline{1}{1em}{3.2em}}
@@ -246,6 +241,29 @@ Esta plantilla se crea para facilitar el proceso de elaborar apuntes\\\\
     xleftmargin=\parindent,
     language=C++,
     morekeywords={fun, Tupla, Marca}
+}
+
+% C++
+\lstdefinestyle{custombash}{
+  backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    xleftmargin=\parindent,
+    language=bash,
+    morekeywords={make}
 }
 
 % OTHER FORMATS

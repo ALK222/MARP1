@@ -135,15 +135,13 @@ void Williams_heap::decreaseKey(int key, int sub)
             break;
         }
     }
-
-    wh_float();
 }
 
 void Williams_heap::printVector()
 {
     for (long unsigned int i = 0; i < _next; ++i)
     {
-        std::cout << _heap[i];
+        std::cout << _heap[i] << " ";
     }
     std::cout << "\n";
 }

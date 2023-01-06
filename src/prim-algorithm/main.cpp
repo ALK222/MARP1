@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    dummygraphs d;
+    dummygraph d;
 #ifndef __PRUEBA__
     d = dgGenerator();
 #else
@@ -28,11 +28,11 @@ int main(int argc, char *argv[])
 
     auto mst = g.prim();
 
-#ifndef __PRUEBA__
+#ifdef __DISPLAY__
     for (std::size_t i = 0; i < mst.size(); ++i)
     {
         std::cout << i + 1 << "-" << mst[i] + 1 << " ";
     }
-#endif // __PRUEBA__
+#endif // __DISPLAY__
     return 0;
 }

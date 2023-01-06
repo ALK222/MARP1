@@ -14,7 +14,7 @@
             "name": "xelatex, makeglossaries, xelatex (2x)",
             "tools": [
                 "xelatex",
-                "makeglossaries",
+                //"makeglossaries",
                 "xelatex",
                 "xelatex"
             ]
@@ -29,8 +29,8 @@
             "name": "xelatex, makeglossaries, bibtex, xelatex (2x)",
             "tools": [
                 "xelatex",
-                "makeglossaries",
-                "bibtex",
+                //"makeglossaries",
+                //"bibtex",
                 "xelatex",
                 "xelatex"
             ]
@@ -102,5 +102,9 @@
         "system_error": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "cSpell.language": "en,es,es-ES",
+    "cSpell.words": [
+        "dummygraph"
+    ]
 }

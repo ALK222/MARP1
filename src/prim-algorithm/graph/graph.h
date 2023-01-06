@@ -17,7 +17,7 @@ public:
     /// @brief Constructor with a matrix of connections already made
     /// @param nodes number of nodes
     /// @param adj Matrix of edges
-    Graph(int nodes, std::vector<std::vector<int>> adj);
+    Graph(int nodes, std::vector<std::vector<std::pair<int, int>>> adj);
 
     /// @brief Finds the minimum spanning three of the graph
     /// @return vector with each position representing a
@@ -29,5 +29,5 @@ private:
     /// @brief number of nodes of the graph
     int _nodeCount;
     /// @brief Matrix of connections of the graph
-    std::vector<std::vector<int>> _adjacency;
+    std::vector<std::vector<std::pair<int, int>>> _adjacency;
 };

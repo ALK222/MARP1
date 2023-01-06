@@ -1,0 +1,24 @@
+\section{Montículo de Williams con Decrecer clave}
+ {\small
+  \subsection{Estructura de archivos}
+  La carpeta está estructurada de la siguiente manera:
+  \begin{itemize}
+      \item\textbf{bin:} Carpeta que contiene el archivo final de compilación.
+      \item\textbf{williams-heap:} Carpeta que contiene los archivos de la biblioteca de montículos y casos de prueba:
+      \begin{itemize}
+          \item\textbf{williams-heap.h y williams-heap.cpp:} archivos con el código de implementación de montículos mediante listas de adyacencia y el propio algoritmo de Prim.
+          \item\textbf{dummyheaps.h:} cabecera que introduce los montículos al programa.
+          \item\textbf{test:} carpeta que contiene un generador de montículos aleatorio y los casos de prueba generados
+      \end{itemize}
+      \item\textbf{obj:} carpeta para la compilación de la librería de montículos.
+      \item\textbf{main.cpp}: archivo fuente que corre los casos de prueba.
+      \item\textbf{makefile}: archivo make para facilitar la compilación de la práctica.
+  \end{itemize}
+
+  La implementación del montículo usada es la vista en los apuntes de clase, traduciendo los métodos de Daphny a C++.
+
+
+  Los gráficos de las pruebas se pueden ver en la figura \ref{fig:decrease-key-plot}~(\nameref{fig:decrease-key-plot}). Estas pruebas incluyen la carga de un grafo desde fichero con todo lo que ello conlleva, pero no la generación del grafo como tal.
+
+  Los tiempos observados se pueden asimilar a las de una función $log(n)$, siendo n el número de elementos del montículo, que es lo que se pedía en el enunciado. Podemos ver picos y valles en las gráficas dado que los grafos de un mismo caso pueden tener un número muy distinto de aristas dada la naturaleza aleatoria de su generación.
+ }

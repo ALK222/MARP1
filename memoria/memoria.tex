@@ -1,30 +1,99 @@
-\documentclass[twoside]{AiTeX}
-\usepackage{gnuplottex}
+\documentclass[6pt]{AiTex}
+
+
 
 
 \title{Memoria activad opcional}
 \author{A.L.K.}
 \date{Diciembre 2022}
+
 \begin{document}
 %\datos{facultad}{universidad}{grado}{asignatura}{subtitulo}{autor}{curso}
 \datos{Informática}{Universidad Complutense de Madrid}{Ingeniería informática}{Métodos Algorítmicos en Resolución de Problemas}{Algoritmo de Prim y montículo de Williams}{Alejandro Barrachina Argudo}{2022-2023}
-\portadaApuntes
-\pagestyle{empty}
-\tableofcontents
-\pagestyle{empty}
+% \portadaApuntes
+% \pagestyle{empty}
+% \tableofcontents
+% \pagestyle{empty}
 \justify
 
-\input{./Temas/Prim.tex}
+
+\section*{Introducción}
+
+En este documento se presenta la explicación de la practica opcional de MAR1, apartado 8, realizada por \autor.
+
+\begin{multicols}{2}
+
+    \input{./Temas/Prim.tex}
+    \vfill
+    \hfill
+
+    \input{Temas/Williams.tex}
+\end{multicols}
+
+\newpage
+
+\section{Ejecución}
+
+Distinguiremos \textbf{carpeta raíz} y \textbf{ejecutable} según cada apartado:
+\begin{itemize}
+    \item Para el algoritmo de prim:
+          \begin{itemize}
+              \item\textbf{Carpeta raíz:} src/prim-algo
+              \item\textbf{Ejecutable:} Prim-algo
+          \end{itemize}
+    \item Para el montículo de Williams:
+          \begin{itemize}
+              \item\textbf{Carpeta raíz:} src/decrease-key
+              \item\textbf{Ejecutable:} Williams-decrease
+          \end{itemize}
+\end{itemize}
+
+Si queremos probar un pequeño (muy pequeño) caso de prueba, podemos ejecutar el siguiente comando sobre la carpeta raíz:
+\begin{lstlisting}[style=custombash]
+    make clean all
+    ./bin/${ejecutable}.out
+    \end{lstlisting}
+
+Si queremos ejecutar una prueba concreta, sobre la carpeta anteriormente mencionada ejecutaremos:
+\begin{lstlisting}[style=custombash]
+    make clean prueba
+    ./bin/${ejecutable}-prueba.out RUTA_AL_ARCHIVO_DE_PRUEBA
+    \end{lstlisting}
+
+En ambos casos podemos añadir al final del comando make \lstinline[style=custombash]{CFLAGS:=$(CFLAGS)"-D __DISPLAY"} para mostrar el resultado de la operación.
+
+Si queremos ejecutar la batería de pruebas proporcionadas junto a esta entrega solo hay que ir a la carpeta anteriormente ejecutada y lanzar \lstinline[style=custombash]{./runner.sh}.
 
 
-\printglossary[title={Glosario}]
 
-\let\cleardoublepage\clearpage
-\listoffigures
-\addcontentsline{toc}{chapter}{Índice de figuras}
-\let\cleardoublepage\clearpage
+\section{Figuras}
+
+\begin{figure}[H]
+    \includegraphics[width = 0.8\textwidth]{./images/average-prim-plot.png}
+    \caption{Gráfica de tiempo del algoritmo de Prim para distintas cargas de trabajo.}
+    \label{fig:prim-plot}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width = 0.8\textwidth]{./images/prim-plot.png}
+    \caption{Distribución de los tiempos observados en las distintas muestras del algoritmo de Prim para distintas cargas de trabajo.}
+    \label{fig:prim-plot}
+\end{figure}
 
 
-\listoftables
-\addcontentsline{toc}{chapter}{Índice de cuadros}
+\begin{figure}[H]
+    \includegraphics[width = 0.75\textwidth]{./images/average-decrease-key-plot.png}
+    \caption{Gráfica de tiempo de Decrecer clave para varios tamaños de montículo.}
+    \label{fig:decrease-key-plot}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width = 0.8\textwidth]{./images/decrease-key-plot.png}
+    \caption{Distribución de los tiempos observados en las distintas muestras de Decrecer clave para distintas cargas de trabajo.}
+    \label{fig:prim-plot}
+\end{figure}
+
+
+
+
 \end{document}
