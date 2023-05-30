@@ -1,6 +1,10 @@
 #!/usr/bin/sh
 
-make clean prueba
+(
+    cd ./graph/williams-heap
+    make lib
+)
+make prueba
 
 EXE=Prim-algo-prueba.out
 LIB=graph
@@ -17,12 +21,12 @@ rm -rf ./results/result_files/*.txt
 
 echo "Running cases"
 
-for test in $(seq 10 10 90; seq 100 100 900; seq 1000 1000 51000);
+for test in $(seq 10 10 90; seq 100 100 900; seq 1000 1000 45000);
 do
     for c in $(seq 1 5);
     do
         echo "Case ${test}-${c}"
-        for _ in $(seq 1 1000);
+        for _ in $(seq 1 500);
         do
             { time ./bin/Prim-algo-prueba.out ./graph/test/test_cases/graph_${test}_${c}.txt ; } &>> ./results/result_files/${test}_${c}.txt
         done

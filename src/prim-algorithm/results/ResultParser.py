@@ -1,6 +1,6 @@
 l1 = list(range(10, 91, 10))
 l2 = list(range(100, 901, 100))
-l3 = list(range(1000, 51001, 1000))
+l3 = list(range(1000, 45001, 1000))
 
 
 l = l1+l2+l3
