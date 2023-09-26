@@ -15,10 +15,10 @@ int resuelveCasoAux(const bintree<int> &a, bool &equilibrado, int _min, int _max
     else
     {
 
-        int nivelIz = 1 + resuelveCasoAux(a.left(), equilibrado, _min, a.root());
-        int nivelDer = 1 + resuelveCasoAux(a.right(), equilibrado, a.root(), _max);
+        int nivelIz = 1 + resuelveCasoAux(a.left(), equilibrado, _min, a.root());   // Si vamos por el lado menor, el número maximo es la raiz anterior
+        int nivelDer = 1 + resuelveCasoAux(a.right(), equilibrado, a.root(), _max); // Si vamos por el lado mayor, el numero minimo es la raiz anterior
 
-        if (equilibrado)
+        if (equilibrado) // Solo resolvemos el caso si todos los casos siguientes son AVL
         {
             if (abs(nivelDer - nivelIz) > 1)
             {
