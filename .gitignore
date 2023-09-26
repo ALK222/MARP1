@@ -338,9 +338,7 @@ s specified. Footnotes are the stored in a file with suffix Notes.bib.
 
 # MARP
 
-/test/Main.cpp 
-/test/bin/*
-/test/bin/
-/test/casos.txt 
-/test/salida.txt
-/test/lib/*
+/test/*
+!/test/makefile
+!/test/runner.sh
+!/test/setup_test_env.sh
