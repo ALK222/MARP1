@@ -335,3 +335,12 @@ TSWLatexianTemp*
 s specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+# MARP
+
+/test/Main.cpp 
+/test/bin/*
+/test/bin/
+/test/casos.txt 
+/test/salida.txt
+/test/lib/*
