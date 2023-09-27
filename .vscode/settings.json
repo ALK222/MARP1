@@ -103,7 +103,8 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "map": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "format": "cpp"
     },
     "cSpell.language": "en,es,es-ES",
     "cSpell.words": [
