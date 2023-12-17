@@ -7,7 +7,7 @@ make all
 if [ $? == 0 ]; then
     ./bin/Prueba.out > salida.txt
     if [ $? == 0 ]; then
-        SALIDA=$(cat salida.txt)
+        SALIDA=$(sed 's/[[:space:]]*$//' salida.txt)
         SALIDA_ESPERADA=$(cat salida_esperada.txt)
         
         if [[ "$SALIDA" == "$SALIDA_ESPERADA" ]]; then
