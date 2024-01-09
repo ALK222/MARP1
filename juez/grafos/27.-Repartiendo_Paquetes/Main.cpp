@@ -5,7 +5,7 @@
 
 #define MAX_TIEMPO 1000000000
 
-class TecladosRotos
+class Amazont
 {
 private:
     DigrafoValorado<int> const grafo;
@@ -25,7 +25,7 @@ private:
             pq.update(w, dist[w]);
         }
     }
-    void contarEnlaces(DigrafoValorado<int> g)
+    void rutas(DigrafoValorado<int> g)
     {
         dist[ini] = 0;
         pq.push(ini, 0);
@@ -42,13 +42,13 @@ private:
     }
 
 public:
-    TecladosRotos(DigrafoValorado<int> const &g, int i) : grafo(g), ini(i), pq(g.V()), dist(g.V(), MAX_TIEMPO), min(0)
+    Amazont(DigrafoValorado<int> const &g, int i) : grafo(g), ini(i), pq(g.V()), dist(g.V(), MAX_TIEMPO), min(0)
     {
     }
 
     void resolver(std::vector<int> dest)
     {
-        contarEnlaces(grafo.inverso());
+        rutas(grafo.inverso());
         std::vector<int> vuelta;
 
         for (int i = 0; i < dist.size(); ++i)
@@ -57,7 +57,7 @@ public:
             dist[i] = MAX_TIEMPO;
         }
 
-        contarEnlaces(grafo);
+        rutas(grafo);
 
         for (int i : dest)
         {
@@ -113,7 +113,7 @@ bool resuelveCaso()
         destinatarios[i] = destinatario - 1;
     }
 
-    TecladosRotos problema(grafo, ini);
+    Amazont problema(grafo, ini);
     problema.resolver(destinatarios);
     if (problema.posible())
     {
