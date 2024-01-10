@@ -76,12 +76,6 @@ bool resuelveCaso()
         grafo.ponArista(v, w);
     }
 
-    // int sum = -1;
-
-    for (int i = 0; i < grafo.V(); ++i)
-    {
-    }
-
     int sol = buscaSumidero(grafo);
 
     if (sol != -1)
